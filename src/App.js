@@ -16,6 +16,12 @@ export default class App extends Component {
     ]
   }
 
+  addTodo = (todoObj) => {
+    const { todos } = this.state
+    const newTodos = [todoObj, ...todos]
+    this.setState({ todos: newTodos })
+  }
+
   //更新做完与否状态
   updateTodo = (id, done) => {
     //获取原始数据
@@ -69,9 +75,9 @@ export default class App extends Component {
     return (
       <div className="todo-container">
         <div className="todo-wrap">
-          <Header />
+          <Header addTodo={this.addTodo} />
           <List todos={todos} updateTodo={this.updateTodo} deleteTodo={this.deleteTodo} />
-          <Footer selectAll={this.selectAll} todos={todos} clearAllDone={this.clearAllDone}/>
+          <Footer selectAll={this.selectAll} todos={todos} clearAllDone={this.clearAllDone} />
         </div>
       </div>
     )
